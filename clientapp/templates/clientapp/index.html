@@ -1,0 +1,43 @@
+{% extends 'clientapp/base.html' %}
+
+
+{% block title%} {{ title }} {% endblock %}
+
+{% block content %}
+    <p class="hello">Рады вас видеть в службе технической поддержки, <b class="color-primary">{{ user.first_name }}</b>. Чем можем помочь?</p>
+    <div class="top-buttons">
+        <a href="{% url 'new-call' %}" class="btn-primary mr-05">Создать обращение</a>
+        <a href="{% url 'calls-archive' %}" class="btn-secondary">Архив</a>
+    </div>
+    <div class="card">
+        <h2>Открытые обращения</h2>
+        <ul class="calls-list-compact">
+            {% if calls %}
+                {% for el in calls %}
+                    {% if el.is_archived == False %}
+                        <li class="calls-list-compact__item">
+                            <h3><a href="{% url 'call-detail' el.id %}">{{ el.title }}</a></h3>
+                            <div class="info-bar">
+                                <span class="date mr-05">{{ el.created }}</span>
+                                {% if el.status.id == 3 %}
+                                    <span class="badge-success">{{ el.status }}</span>
+                                {% elif el.status.id == 2 %}
+                                    <span class="badge-alert">{{ el.status }}</span>
+                                {% elif el.status.id == 1 %}
+                                    <span class="badge-neutral">{{ el.status }}</span>
+                                {% else %}
+                                    <span class="date">Обращение принято. Статус пока не установлен.</span>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>У вас нет открытых обращений</p>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,40 @@
+{% extends 'clientapp/base.html' %}
+
+
+{% block title%} Обращение {{ call.id }}: {{ call.title }} {% endblock %}
+
+{% block content %}
+    <div class="top-buttons">
+        <a href="{% url 'home' %}" class="btn-secondary">Вернуться на главную</a>
+    </div>
+    <div class="card">
+        <h2>Обращение {{ call.id }}: {{ call.title }}</h2>
+        <p class="created-date">Дата создания: {{ call.created }}</p>
+        {% if call.status != None %}
+            <p class="
+                {% if call.status.id == 1 %}
+                    badge-neutral
+                {% elif call.status.id == 2 %}
+                    badge-alert
+                {%  elif call.status.id == 3 %}
+                    badge-success
+                {% else %}
+                {% endif %}
+                ">{{ call.status }}</p>
+        {% else %}
+             <p class="date">Обращение принято. Статус пока не установлен.</p>
+        {% endif %}
+        <p class="call-message">{{ call.message }}</p>
+        {% if call.deadline != Null %}
+            <p class="deadline">Дата решения: <b>{{ call.deadline }}</b></p>
+        {% else %}
+            <p class="deadline">Дата решения: <b>не установлена</b></p>
+        {% endif %}
+        <h3>Вердикт по обращению</h3>
+        {% if call.verdict %}
+            <p class="call-verdict">{{ call.verdict }}</p>
+        {% else %}
+            <p id="call-verdict">Вердикт пока не установлен.</p>
+        {% endif %}
+    </div>
+{% endblock %}

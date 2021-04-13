@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Логин</title>
+    <link rel="stylesheet" href="../../static/css/main.css">
+</head>
+<body>
+
+    <nav>
+        <img src="../../static/img/logo.png" alt="logo" class="logo">
+{#        <div class="nav">#}
+{#            <label for="menu-toggle">&#9776;</label>#}
+{#            <input id="menu-toggle" type="checkbox">#}
+{#            <div id="menu-wrapper">#}
+{#                <ul id="menu">#}
+{#                    <li><a href="./index.html" class="menu-item">Главная</a></li>#}
+{#                    <li><a href="#" class="menu-item">Настройки</a></li>#}
+{#                    <li><a href="#" class="menu-item">Выйти</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+    </nav>
+
+    <div class="page-content">
+        <h2>Здравствуйте!</h2>
+        <p class="hello">Это техподдержка компании
+            Облачная автоматизация. Войдите 
+            в систему, чтобы получить помощь.</p>
+        <div class="card">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <p>
+                    <label for="">Логин</label>
+                    {{ form.username }}
+                </p>
+                <p>
+                    <label for="">Пароль</label>
+                    {{ form.password }}
+                </p>
+                <button type="submit">Войти</button>
+                {{ error }}
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

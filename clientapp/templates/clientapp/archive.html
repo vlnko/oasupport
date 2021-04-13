@@ -1,0 +1,42 @@
+{% extends 'clientapp/base.html' %}
+
+
+{% block title%} {{ title }} {% endblock %}
+
+{% block content %}
+    <p class="hello">Здесь собраны все ваши прошлые обращения, помеченные, как "архивные".</p>
+    <div class="top-buttons">
+        <a href="{% url 'home' %}" class="btn-secondary">Вернуться на главную</a>
+    </div>
+    <div class="card">
+        <h2>Архивные обращения</h2>
+        <ul class="calls-list-compact">
+            {% if calls.is_archived == True %}
+                {% for el in calls %}
+                    {% if el.is_archived == True %}
+                        <li class="calls-list-compact__item">
+                            <h3><a href="{% url 'call-detail' el.id %}">{{ el.title }}</a></h3>
+                            <div class="info-bar">
+                                <span class="date mr-05">{{ el.created }}</span>
+                                {% if el.status.id == 3 %}
+                                    <span class="badge-success">{{ el.status }}</span>
+                                {% elif el.status.id == 2 %}
+                                    <span class="badge-alert">{{ el.status }}</span>
+                                {% elif el.status.id == 1 %}
+                                    <span class="badge-neutral">{{ el.status }}</span>
+                                {% else %}
+                                    <span class="date">Обращение принято. Статус пока не установлен.</span>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>У вас нет архивных обращений</p>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+

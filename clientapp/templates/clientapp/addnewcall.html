@@ -1,0 +1,30 @@
+{% extends 'clientapp/base.html' %}
+
+{% block title%}Создание обращения{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Создание обращения</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label>Тема</label>
+                {{ form.title }}
+            </p>
+            <p>
+                <label>Категория проблемы</label>
+                {{ form.category }}
+            </p>
+            <p>
+                <label>Описание проблемы</label>
+                {{ form.message }}
+            </p>
+            <p>
+                <label>Вложения</label>
+                {{ form.file }}
+            </p>
+            <button type="submit">Отправить обращение</button><br>
+            <p style="color: #bc5353">{{ error }}</p>
+        </form>
+    </div>
+{% endblock %}
