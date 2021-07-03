@@ -4,7 +4,7 @@ from .models import Call, Category, Status, Company, CustomUser
 
 
 class Calladmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'status', 'created', 'message')
+    list_display = ('title', 'category', 'status', 'created', 'author', 'message')
     list_filter = ('status', 'is_archived', 'category')
     search_fields = ['title', 'message']
 
