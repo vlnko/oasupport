@@ -7,15 +7,27 @@ from django.contrib.auth import authenticate, login, logout
 
 def index(request):
     user = request.user
+
     if user.is_authenticated:
-        calls = Call.objects.filter(author__company=request.user.company)
+        calls = Call.objects.filter(author__company=request.user.company).filter(is_archived=False)
         return render(request, 'clientapp/index.html', {'title': 'Главная страница', 'calls': calls, 'user': user})
     else:
         return redirect('login')
 
 
+def callsarchive(request):
+    user = request.user
+
+    if user.is_authenticated:
+        calls = Call.objects.order_by('-id').filter(is_archived=True)
+        return render(request, 'clientapp/archive.html', {'title': 'Архив обращений', 'calls': calls})
+    else:
+            return redirect('login')
+
+
 def addnewcall(request):
     user = request.user
+    
     if user.is_authenticated:
         error = ''
         if request.method == 'POST':
@@ -67,6 +79,3 @@ class CallDetailView(DetailView):
     context_object_name = 'call'
 
 
-def callsarchive(request):
-    calls = Call.objects.order_by('-id')
-    return render(request, 'clientapp/archive.html', {'title': 'Archive', 'calls': calls})
