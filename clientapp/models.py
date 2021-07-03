@@ -54,6 +54,7 @@ class Category(models.Model):
 class Status(models.Model):
     title = models.CharField('Название', max_length=32)
     id = models.IntegerField('Id', primary_key=True)
+    css_styles = models.CharField('Стили CSS', max_length=512, blank=True, null=True, default='')
 
     def __str__(self):
         return self.title

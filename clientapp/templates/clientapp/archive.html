@@ -17,14 +17,10 @@
                         <h3><a href="{% url 'call-detail' el.id %}">{{ el.title }}</a></h3>
                         <div class="info-bar">
                             <span class="date mr-05">{{ el.created }}</span>
-                            {% if el.status.id == 3 %}
-                                <span class="badge-success">{{ el.status }}</span>
-                            {% elif el.status.id == 2 %}
-                                <span class="badge-alert">{{ el.status }}</span>
-                            {% elif el.status.id == 1 %}
-                                <span class="badge-neutral">{{ el.status }}</span>
+                            {% if el.status %}
+                                <span style="{{ el.status.css_styles }}">{{ el.status }}</span>
                             {% else %}
-                                <span class="date">Обращение принято. Статус пока не установлен.</span>
+                                <span class="date">Обращение принято, статус пока не установлен.</span>
                             {% endif %}
                         </div>
                     </li>
