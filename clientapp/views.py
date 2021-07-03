@@ -19,7 +19,7 @@ def callsarchive(request):
     user = request.user
 
     if user.is_authenticated:
-        calls = Call.objects.order_by('-id').filter(is_archived=True)
+        calls = Call.objects.order_by('-id').filter(author__company=request.user.company).filter(is_archived=True)
         return render(request, 'clientapp/archive.html', {'title': 'Архив обращений', 'calls': calls})
     else:
             return redirect('login')

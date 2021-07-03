@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
 
 
 class Call(models.Model):
-    author = models.ForeignKey('CustomUser', on_delete=models.SET_NULL, max_length=120, default='', blank=True, null=True)
+    author = models.ForeignKey('CustomUser', on_delete=models.SET_NULL, verbose_name='Автор обращения', max_length=120, default='', blank=True, null=True)
     category = models.ForeignKey('Category', on_delete=models.SET_DEFAULT, verbose_name='Категория', blank=True, null=True, default='')
     title = models.CharField('Тема', max_length=50)
     message = models.TextField('Описание проблемы')
