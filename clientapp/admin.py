@@ -2,11 +2,21 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Call, Category, Status, Company, CustomUser
 
+def make_archived(modeladmin, request, queryset):
+    queryset.update(is_archived=True)
+make_archived.short_description = "Отправить в архив"
+
+
+def make_not_archived(modeladmin, request, queryset):
+    queryset.update(is_archived=False)
+make_not_archived.short_description = "Убрать из архива"
+
 
 class Calladmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'status', 'created', 'author')
     list_filter = ('status', 'is_archived', 'category')
     search_fields = ['title', 'message']
+    actions = [make_archived, make_not_archived]
 
 
 class CustomUserAdmin(UserAdmin):
