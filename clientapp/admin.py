@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Call, Category, Status, Company, CustomUser
 
+
 def make_archived(modeladmin, request, queryset):
     queryset.update(is_archived=True)
 make_archived.short_description = "Отправить в архив"
