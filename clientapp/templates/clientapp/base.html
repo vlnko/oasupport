@@ -10,19 +10,7 @@
 <body>
 
     <nav>
-
         <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">
-        <div class="nav">
-            <label for="menu-toggle">&#9776;</label>
-            <input id="menu-toggle" type="checkbox">
-            <div id="menu-wrapper">
-                <ul id="menu">
-                    <li><a href="{% url 'home' %}" class="menu-item">Главная</a></li>
-                    <li><a href="{% url 'calls-archive' %}" class="menu-item">Архив</a></li>
-                    <li><a href="{% url 'logout' %}" class="menu-item">Выйти</a></li>
-                </ul>
-            </div>
-        </div>
     </nav>
 
     <div class="page-content">

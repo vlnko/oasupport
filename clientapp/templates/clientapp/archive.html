@@ -18,7 +18,7 @@
                         <div class="info-bar">
                             <span class="date mr-05">{{ el.created }}</span>
                             {% if el.status %}
-                                <span style="{{ el.status.css_styles }}">{{ el.status }}</span>
+                                <span style="border-radius: 4px; font-size: 12px; padding: 2px 6px; background-color: {{ el.status.css_styles }}">{{ el.status }}</span>
                             {% else %}
                                 <span class="date">Обращение принято, статус пока не установлен.</span>
                             {% endif %}

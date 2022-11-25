@@ -11,16 +11,7 @@
         <h2>Обращение {{ call.id }}: {{ call.title }}</h2>
         <p class="created-date">Дата создания: {{ call.created }}</p>
         {% if call.status != None %}
-            <p class="
-                {% if call.status.id == 1 %}
-                    badge-neutral
-                {% elif call.status.id == 2 %}
-                    badge-alert
-                {%  elif call.status.id == 3 %}
-                    badge-success
-                {% else %}
-                {% endif %}
-                ">{{ call.status }}</p>
+            <p style="display: inline; border-radius: 4px; font-size: 12px; padding: 2px 6px; background-color: {{call.status.css_styles }}">{{ call.status }}</p>
         {% else %}
              <p class="date">Обращение принято. Статус пока не установлен.</p>
         {% endif %}

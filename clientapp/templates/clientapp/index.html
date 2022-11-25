@@ -4,11 +4,22 @@
 {% block title%} {{ title }} {% endblock %}
 
 {% block content %}
-    <p class="hello">Рады вас видеть в службе технической поддержки, <b class="color-primary">{{ user.first_name }}</b>. Чем можем помочь?</p>
+
+    <p class="hello">
+        Рады вас видеть в службе технической поддержки, 
+            {% if user.first_name %}
+                <b class="color-primary">{{ user.first_name }}</b>.
+            {% else %} 
+                <b class="color-primary">пользователь без имени</b>.
+            {% endif %}
+        Чем можем помочь?
+    </p>
+
     <div class="top-buttons">
         <a href="{% url 'new-call' %}" class="btn-primary mr-05">Создать обращение</a>
         <a href="{% url 'calls-archive' %}" class="btn-secondary">Архив</a>
     </div>
+
     <div class="card">
         <h2>Открытые обращения</h2>
         <ul class="calls-list-compact">
@@ -19,7 +30,7 @@
                         <div class="info-bar">
                             <span class="date mr-05">{{ el.created }}</span>
                             {% if el.status %}
-                                <span style="{{ el.status.css_styles }}">{{ el.status }}</span>
+                                <span style="border-radius: 4px; font-size: 12px; padding: 2px 6px; background-color: {{ el.status.css_styles }}">{{ el.status }}</span>
                             {% else %}
                                 <span class="date">Обращение принято, статус пока не установлен.</span>
                             {% endif %}
@@ -31,6 +42,7 @@
             {% endif %}
         </ul>
     </div>
+
 {% endblock %}
 
 
